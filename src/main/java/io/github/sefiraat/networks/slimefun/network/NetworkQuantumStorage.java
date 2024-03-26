@@ -89,16 +89,16 @@ public class NetworkQuantumStorage extends SlimefunItem implements DistinctiveIt
     private static final ItemStack SET_ITEM = new CustomItemStack(
         Material.LIME_STAINED_GLASS_PANE,
         Theme.SUCCESS + "设置",
-        Theme.PASSIVE + "Click with an item to set the Quantum's Stored Item.",
-        Theme.PASSIVE + "Shift Click to toggle voiding items over the maximum storage size."
+        Theme.PASSIVE + "点击以设置量子存储的物品",
+        Theme.PASSIVE + "按住 Shift 点击以切换超出最大存储大小的物品处理方式"
     );
 
     private static final ItemStack SET_ITEM_SUPPORTING_CUSTOM_MAX = new CustomItemStack(
         Material.LIME_STAINED_GLASS_PANE,
-        Theme.SUCCESS + "Set Item",
-        Theme.PASSIVE + "Click with an item to set the Quantum's Stored Item.",
-        Theme.PASSIVE + "Click without an item to set the Quantum's maximum storage size.",
-        Theme.PASSIVE + "Shift Click to toggle voiding items over the maximum storage size."
+        Theme.SUCCESS + "设置",
+        Theme.PASSIVE + "点击以设置量子存储的物品",
+        Theme.PASSIVE + "点击但不放置物品以设置量子的最大存储大小",
+        Theme.PASSIVE + "按住 Shift 点击以切换超出最大存储大小的物品处理方式"
     );
 
     private static final ItemStack BACK_OUTPUT = new CustomItemStack(
