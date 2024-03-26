@@ -499,7 +499,7 @@ public class NetworkQuantumStorage extends SlimefunItem implements DistinctiveIt
             if (cache.supportsCustomMaxAmount()) {
                 // Cache limit is set at the potentially custom max amount set
                 // The player could set the custom maximum amount to be the actual maximum amount 
-                lore.add(Theme.CLICK_INFO + "Max Amount: " + Theme.PASSIVE + cache.getLimit());
+                lore.add(Theme.CLICK_INFO + "最大数量: " + Theme.PASSIVE + cache.getLimit());
             }
             itemMeta.setLore(lore);
             itemStack.setItemMeta(itemMeta);
