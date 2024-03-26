@@ -233,14 +233,14 @@ public class NetworkQuantumStorage extends SlimefunItem implements DistinctiveIt
     private void setCustomMaxAmount(@Nonnull BlockMenu blockMenu, @Nonnull Player player, @Nonnull int newMaxAmount) {
         final QuantumCache cache = CACHES.get(blockMenu.getLocation());
         if (cache == null || !cache.supportsCustomMaxAmount()) {
-            player.sendMessage(Theme.ERROR + "This Quantum Storage does not support custom maximum storage amounts.");
+            player.sendMessage(Theme.ERROR + "这个量子存储不支持自定义的最大存储容量.");
             return;
         }
         cache.setLimit(newMaxAmount);
         updateDisplayItem(blockMenu, cache);
         syncBlock(blockMenu.getLocation(), cache);
         CACHES.put(blockMenu.getLocation(), cache);
-        player.sendMessage(Theme.SUCCESS + "Maximum Storage Size applied");
+        player.sendMessage(Theme.SUCCESS + "最大存储大小已设置");
     }
 
     public void setSupportsCustomMaxAmount(boolean supportsCustomMaxAmount) {
@@ -297,7 +297,7 @@ public class NetworkQuantumStorage extends SlimefunItem implements DistinctiveIt
                         p.getItemOnCursor().getType() == Material.AIR
                     ) {
                         p.closeInventory();
-                        p.sendMessage(Theme.WARNING + "Type the new maximum storage size for this Quantum Storage - it must be between 1 and " + Integer.MAX_VALUE + "!");
+                        p.sendMessage(Theme.WARNING + "请输入量子存储的新最大存储容量 - 必须在1和 " + Integer.MAX_VALUE + "之间!");
                         ChatUtils.awaitInput(p, s -> {
                             // Catching the error is cleaner than directly validating the string
                             try {
@@ -307,7 +307,7 @@ public class NetworkQuantumStorage extends SlimefunItem implements DistinctiveIt
                                 int newMax = Math.max(1, Math.min(Integer.parseInt(s), maxAmount));
                                 setCustomMaxAmount(menu, p, newMax);
                             } catch (NumberFormatException e) {
-                                p.sendMessage(Theme.ERROR + "That's not a number.");
+                                p.sendMessage(Theme.ERROR + "这不是一个合法的数字.");
                             }
                         });
                     } else {
