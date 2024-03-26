@@ -13,16 +13,18 @@ public class QuantumCache extends ItemStackCache {
 
     @Nullable
     private final ItemMeta storedItemMeta;
-    private final int limit;
+    private int limit;
     private int amount;
     private boolean voidExcess;
+    private boolean supportsCustomMaxAmount;
 
-    public QuantumCache(@Nullable ItemStack storedItem, int amount, int limit, boolean voidExcess) {
+    public QuantumCache(@Nullable ItemStack storedItem, int amount, int limit, boolean voidExcess, boolean supportsCustomMaxAmount) {
         super(storedItem);
         this.storedItemMeta = storedItem == null ? null : storedItem.getItemMeta();
         this.amount = amount;
         this.limit = limit;
         this.voidExcess = voidExcess;
+        this.supportsCustomMaxAmount = supportsCustomMaxAmount;
     }
 
     @Nullable
@@ -34,8 +36,16 @@ public class QuantumCache extends ItemStackCache {
         return amount;
     }
 
+    public boolean supportsCustomMaxAmount() {
+        return this.supportsCustomMaxAmount;
+    }
+
     public void setAmount(int amount) {
         this.amount = amount;
+    }
+
+    public void setLimit(int limit) {
+        this.limit = limit;
     }
 
     public int increaseAmount(int amount) {
@@ -96,6 +106,9 @@ public class QuantumCache extends ItemStackCache {
         lore.add("");
         lore.add(Theme.CLICK_INFO + "物品: " + itemName);
         lore.add(Theme.CLICK_INFO + "数量: " + this.getAmount());
+        if (this.supportsCustomMaxAmount) {
+            lore.add(Theme.CLICK_INFO + "最大数量: " + this.getLimit());
+        }
         itemMeta.setLore(lore);
     }
 
@@ -105,8 +118,12 @@ public class QuantumCache extends ItemStackCache {
         if (getItemStack() != null) {
             itemName = ItemStackHelper.getDisplayName(this.getItemStack());
         }
-        lore.add(Theme.CLICK_INFO + "物品: " + itemName);
-        lore.add(Theme.CLICK_INFO + "数量: " + this.getAmount());
+        final int loreIndexModifier = this.supportsCustomMaxAmount ? 1 : 0;
+        lore.set(lore.size() - 2 - loreIndexModifier,Theme.CLICK_INFO + "物品: " +itemName);
+        lore.set(lore.size() - 1 - loreIndexModifier, Theme.CLICK_INFO + "数量: " + this.getAmount());
+        if (this.supportsCustomMaxAmount) {
+            lore.set(lore.size() - loreIndexModifier, Theme.CLICK_INFO + "最大数量: " + this.getLimit());
+        }
         itemMeta.setLore(lore);
     }
 }

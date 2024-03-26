@@ -486,6 +486,7 @@ public class NetworksSlimefunItemStacks {
             Theme.MACHINE,
             "网络量子存储 (∞)",
             "可存储几乎无限多个物品",
+            "可自定义所能存储的数量上限",
             "",
             "在量子奇点中存储大量物品"
         );
